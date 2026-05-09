@@ -44,6 +44,18 @@ void BloodDatabase::displayProvinces() {
     cout << "10. Guainía\n";
 }
 
+void BloodDatabase::displayBloodTypes() {
+    cout << "Elige el tipo de Sangre:\n";
+    cout << "1. A+\n";
+    cout << "2. A-\n";
+    cout << "3. B+\n";
+    cout << "4. B-\n";
+    cout << "5. AB+\n";
+    cout << "6. AB-\n";
+    cout << "7. O+\n";
+    cout << "8. O-\n";
+}
+
 void BloodDatabase::clearConsole() {
 #ifdef _WIN32
     system("cls");

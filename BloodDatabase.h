@@ -51,6 +51,8 @@ public:
     static void waitForKeyPress();
     static int getValidatedInput(const std::string& prompt);
 
+    static void displayBloodTypes();
+
     void getDonorDetails();
     void writeDataToFile();
     void searchAndDisplay() const;
