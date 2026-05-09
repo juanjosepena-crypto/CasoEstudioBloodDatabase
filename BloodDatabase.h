@@ -44,14 +44,14 @@ private:
     const std::string fileName = "data.txt";
     std::vector<Donor> donors;
 
-    static void displayProvinces();
+    static void displayProvinces();//Cambio en manera de mostrar las provincias
+    static void displayBloodTypes();
+
 
 public:
     static void clearConsole();
     static void waitForKeyPress();
     static int getValidatedInput(const std::string& prompt);
-
-    static void displayBloodTypes();
 
     void getDonorDetails();
     void writeDataToFile();

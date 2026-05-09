@@ -53,7 +53,7 @@ int main() {
             database.writeDataToFile();
             break;
         case 2:
-            database.searchAndDisplay();
+            database.searchAndDisplay();//Hecho
             break;
         case 3:
             cout << "Ingrese el nombre del donante a eliminar: ";
@@ -62,7 +62,6 @@ int main() {
             BloodDatabase::waitForKeyPress();
             break;
         case 4:
-            database.displayBloodTypes();
             cout << "Gracias por usar el Sistema de la Cruz Roja" << endl;
             return 0;
         default:

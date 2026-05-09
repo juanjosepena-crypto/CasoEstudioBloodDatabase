@@ -73,8 +73,9 @@ void BloodDatabase::waitForKeyPress() {
 int BloodDatabase::getValidatedInput(const string& prompt) {
     int value;
     string input;
+    cout<<input<<endl;
     while (true) {
-        cout << prompt;
+        cout << prompt;//No parece hacer nada, pero es necesario para que el programa sepa qué input validar
         getline(cin, input);
         try {
             if (!all_of(input.begin(), input.end(), ::isdigit)) {
@@ -104,8 +105,8 @@ void BloodDatabase::getDonorDetails() {
 
     displayProvinces();
     newDonor.district = getValidatedInput("departamento (ingrese el número correspondiente): ");
-    cout << "Tipo de sangre: ";
-    getline(cin, newDonor.bloodType);
+    displayBloodTypes();
+    newDonor.bloodType = getValidatedInput("Tipo de sangre: ");
     newDonor.number = getValidatedInput("Número: ");
 
     donors.push_back(newDonor);
@@ -134,9 +135,15 @@ void BloodDatabase::searchAndDisplay() const {
     string addressFilter;
     getline(cin, addressFilter);
 
+    displayBloodTypes();
     cout << "Ingrese el tipo de sangre (dejar en blanco para omitir): ";
     string bloodTypeFilter;
+    int bloodTypeSAD; //Variable para almacenar el tipo de sangre filtrado como entero
     getline(cin, bloodTypeFilter);
+    if (bloodTypeFilter!=""){
+        int bloodTypeSAD= getValidatedInput(bloodTypeFilter);//blootTypeSAD = BloodType Search And Display
+    }
+    else int bloodTypeSAD = 0; //Departamento 0 no existe, así que no afectará los resultados
 
     ifstream inFile(fileName);
 
@@ -153,7 +160,7 @@ void BloodDatabase::searchAndDisplay() const {
         Donor d = Donor::parseLine(line);
         bool match = d.district == provinceName &&
             (addressFilter.empty() || d.address.find(addressFilter) != string::npos) &&
-            (bloodTypeFilter.empty() || d.bloodType == bloodTypeFilter);
+            (bloodTypeFilter.empty() || d.bloodType == bloodTypeSAD);
 
         if (match) {
             donors.push_back(d);
