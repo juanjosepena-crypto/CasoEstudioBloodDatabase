@@ -1,3 +1,4 @@
+
 /*
     Proyecto: BloodDatabase (Adaptado)
     Curso: Fundamentos de Programación Orientada a Objetos (FPOO)
@@ -12,7 +13,7 @@
 
     Autor: Victor Bucheli
     Correo: victor.bucheli@correounivalle.edu.co
-    Fecha: Octubre 2024
+    Fecha: Mayo 2026
 */
 
 #include "BloodDatabase.h"
@@ -23,14 +24,14 @@
 using namespace std;
 
 int main() {
-    std::string donorName;
+    string donorName;
     BloodDatabase database;
     int choice;
 
     while (true) {
         BloodDatabase::clearConsole();
 
-        std::cout <<
+        cout <<
              " ░█████╗░██████╗░██╗░░░██╗███████╗  ██████╗░░█████╗░░░░░░██╗░█████╗░\n"
              " ██╔══██╗██╔══██╗██║░░░██║╚════██║  ██╔══██╗██╔══██╗░░░░░██║██╔══██╗\n"
              " ██║░░╚═╝██████╔╝██║░░░██║░░███╔═╝  ██████╔╝██║░░██║░░░░░██║███████║\n"
@@ -38,13 +39,13 @@ int main() {
              " ╚█████╔╝██║░░██║╚██████╔╝███████╗  ██║░░██║╚█████╔╝╚█████╔╝██║░░██║\n"
              " ░╚════╝░╚═╝░░╚═╝░╚═════╝░╚══════╝  ╚═╝░░╚═╝░╚════╝░░╚════╝░╚═╝░░╚═╝\n";
 
-        std::cout << "1. Registrar donante\n";
-        std::cout << "2. Buscar donante\n";
-        std::cout << "3. Eliminar donante\n";
-        std::cout << "4. Salir\n";
-        std::cout << "Ingrese su elección: ";
-        std::cin >> choice;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // descartar cualquier entrada extra
+        cout << "1. Registrar donante\n";
+        cout << "2. Buscar donante\n";
+        cout << "3. Eliminar donante\n";
+        cout << "4. Salir\n";
+        cout << "Ingrese su elección: ";
+        cin >> choice;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // descartar cualquier entrada extra
 
         switch (choice) {
         case 1:
@@ -55,18 +56,19 @@ int main() {
             database.searchAndDisplay();
             break;
         case 3:
-            std::cout << "Ingrese el nombre del donante a eliminar: ";
-            std::getline(std::cin, donorName);
+            cout << "Ingrese el nombre del donante a eliminar: ";
+            getline(cin, donorName);
             database.deleteDonor(donorName);
             BloodDatabase::waitForKeyPress();
             break;
         case 4:
-            std::cout << "Gracias por usar el Sistema de la Cruz Roja" << std::endl;
+            cout << "Gracias por usar el Sistema de la Cruz Roja" << endl;
             return 0;
         default:
-            std::cout << "Opción no válida. Inténtalo de nuevo.\n";
+            cout << "Opción no válida. Inténtalo de nuevo.\n";
             BloodDatabase::waitForKeyPress();
             break;
         }
     }
 }
+
