@@ -51,7 +51,7 @@ private:
 public:
     static void clearConsole();
     static void waitForKeyPress();
-    static int getValidatedInput(const std::string& prompt);
+    static long getValidatedInput(const std::string& prompt);
 
     void getDonorDetails();
     void writeDataToFile();

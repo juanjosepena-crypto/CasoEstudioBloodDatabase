@@ -70,10 +70,9 @@ void BloodDatabase::waitForKeyPress() {
     cin.get();
 }
 
-int BloodDatabase::getValidatedInput(const string& prompt) {
-    int value;
+long BloodDatabase::getValidatedInput(const string& prompt) {
+    long value;
     string input;
-    //cout<<"Input: "<<input<<endl;
     while (true) {
         cout << prompt;//No parece hacer nada, pero es necesario para que el programa sepa qué input validar
         getline(cin, input);
@@ -81,7 +80,10 @@ int BloodDatabase::getValidatedInput(const string& prompt) {
             if (!all_of(input.begin(), input.end(), ::isdigit)) {
                 throw invalid_argument("La entrada contiene caracteres no numéricos");
             }
-            value = stoi(input);
+            else {
+                value = stol(input);
+                return value;
+            }
             break; // si la conversión es exitosa, salir del bucle
         } catch (const invalid_argument& e) {
             cout << "Entrada no válida: " << e.what() << ". Por favor ingrese un número válido." << endl;
@@ -89,7 +91,6 @@ int BloodDatabase::getValidatedInput(const string& prompt) {
             cout << "Entrada fuera de rango. Por favor ingrese un número válido." << endl;
         }
     }
-    return value;
 }
 
 void BloodDatabase::getDonorDetails() {
@@ -195,7 +196,7 @@ void BloodDatabase::searchAndDisplay() const {
             cout << "Dirección: " << d.address << endl;
             cout << "departamento: " << d.district << endl;
             cout << "Tipo de sangre: " << d.bloodType << endl;
-            cout << "Número de móvil: " << d.number << endl;
+            cout << "Número de móvil: " << fixed <<setprecision(0) << d.number << endl;//setprecision(0) para mostrar el número sin anotación científica
             cout << endl;
         }
     }
@@ -225,11 +226,14 @@ void BloodDatabase::deleteDonor(const string& donorName) {
         Donor d = Donor::parseLine(line);
         if (d.name == donorName) {
             found = true;
+            cout << endl;
+            cout << "- - - - - - - - - - - - - -" << endl;
             cout << "Nombre: " << d.name << endl;
             cout << "Dirección: " << d.address << endl;
-            cout << "Departamento: " << d.district << endl;//No estaba
+            cout << "Departamento: " << Donor::getProvince(d.district) << endl;
             cout << "Tipo de sangre: " << Donor::getBloodType(d.bloodType) << endl;//Cambio a función getBloodType de Donor para mostrar el tipo de sangre en formato legible
             cout << "Número de móvil: " << d.number << endl;
+            cout << "- - - - - - - - - - - - - -" << endl;
             cout << endl;
             cout << "¿Está seguro de que desea eliminar al donante? [s/n]: ";
             char sureChoice;
@@ -240,7 +244,6 @@ void BloodDatabase::deleteDonor(const string& donorName) {
                 continue;
             }
             else if (sureChoice == 'n' || sureChoice == 'N') {
-                //Por editar
             }
         }
 

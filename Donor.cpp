@@ -62,17 +62,55 @@ string Donor::getBloodType(int auxBloodType){
         }
 	}
 
+string Donor::getProvince(int auxProvince){
+	switch(auxProvince){
+        case 1:
+            return "Putumayo";
+		    break;
+	    case 2:
+		    return "Cauca";
+		    break;
+        case 3:
+            return "Valle Del Cauca";
+		    break;
+	    case 4:
+		    return "Amazonas";
+		    break;
+	    case 5:
+		    return "Risaralda";
+		    break;
+	    case 6:
+		    return "Antioquia";
+		    break;
+	    case 7:
+		    return "Norte de Santander";
+		    break;
+	    case 8:
+		    return "Chocó";
+		    break;
+        case 9:
+		    return "Arauca";
+		    break;
+        case 10:
+		    return "Guainía";
+		    break;
+	    default:
+            return "N/A";
+		    cout<<"Dato de Provincia errado. Avisar al Administrador"<<endl;
+        }
+	}
+
 Donor Donor::parseLine(const string& line) {
     Donor d;
     stringstream ss(line);
     string token;
 
-    getline(ss, token, ','); d.donorId = stoi(trim(token));
+    getline(ss, token, ','); d.donorId = stol(trim(token));
     getline(ss, token, ','); d.name = trim(token);
     getline(ss, token, ','); d.address = trim(token);
     getline(ss, token, ','); d.district = stoi(trim(token));
     getline(ss, token, ','); d.bloodType = stoi(trim(token));
-    getline(ss, token, ','); d.number = stoi(trim(token));
+    getline(ss, token, ','); d.number = stol(trim(token));
 
     return d;
 }
