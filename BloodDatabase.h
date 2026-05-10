@@ -44,7 +44,7 @@ private:
     const std::string fileName = "data.txt";
     std::vector<Donor> donors;
 
-    static void displayProvinces();//Cambio en manera de mostrar las provincias
+    static void displayProvinces();//Por editar
     static void displayBloodTypes();
 
 
@@ -57,6 +57,7 @@ public:
     void writeDataToFile();
     void searchAndDisplay() const;
     void deleteDonor(const std::string& donorName);
+
 };
 
 #endif // BLOODDATABASE_H

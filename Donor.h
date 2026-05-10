@@ -44,6 +44,7 @@ public:
     std::string name, address;
 
     void donorDetails() const;
+    static std::string getBloodType(int auxBloodType);
 
     static Donor parseLine(const std::string& line);
 

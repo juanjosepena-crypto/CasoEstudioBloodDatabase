@@ -73,7 +73,7 @@ void BloodDatabase::waitForKeyPress() {
 int BloodDatabase::getValidatedInput(const string& prompt) {
     int value;
     string input;
-    cout<<input<<endl;
+    //cout<<"Input: "<<input<<endl;
     while (true) {
         cout << prompt;//No parece hacer nada, pero es necesario para que el programa sepa qué input validar
         getline(cin, input);
@@ -106,7 +106,7 @@ void BloodDatabase::getDonorDetails() {
     displayProvinces();
     newDonor.district = getValidatedInput("departamento (ingrese el número correspondiente): ");
     displayBloodTypes();
-    newDonor.bloodType = getValidatedInput("Tipo de sangre: ");
+    newDonor.bloodType = getValidatedInput("Tipo de sangre (ingrese el número correspondiente): ");
     newDonor.number = getValidatedInput("Número: ");
 
     donors.push_back(newDonor);
@@ -136,14 +136,18 @@ void BloodDatabase::searchAndDisplay() const {
     getline(cin, addressFilter);
 
     displayBloodTypes();
-    cout << "Ingrese el tipo de sangre (dejar en blanco para omitir): ";
+    bool choose;
+    cerr << "Desea buscar por tipo de sangre? (1=Si, 0=No): ";
+    cin >> choose;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // descartar cualquier entrada extra
     string bloodTypeFilter;
-    int bloodTypeSAD; //Variable para almacenar el tipo de sangre filtrado como entero
-    getline(cin, bloodTypeFilter);
-    if (bloodTypeFilter!=""){
-        int bloodTypeSAD= getValidatedInput(bloodTypeFilter);//blootTypeSAD = BloodType Search And Display
+    int bloodTypeSAD; //blootTypeSAD = BloodType Search And Display. Variable para almacenar el tipo de sangre filtrado como entero
+    if (choose==1){
+        int bloodTypeSAD= getValidatedInput("Ingrese el tipo de sangre (dejar en blanco para omitir): ");
     }
-    else int bloodTypeSAD = 0; //Departamento 0 no existe, así que no afectará los resultados
+    else {
+        int bloodTypeSAD = 0;
+    }; //Departamento 0 no existe, así que no afectará los resultados
 
     ifstream inFile(fileName);
 
@@ -224,7 +228,7 @@ void BloodDatabase::deleteDonor(const string& donorName) {
             cout << "Nombre: " << d.name << endl;
             cout << "Dirección: " << d.address << endl;
             cout << "Departamento: " << d.district << endl;//No estaba
-            cout << "Tipo de sangre: " << d.bloodType << endl;
+            cout << "Tipo de sangre: " << Donor::getBloodType(d.bloodType) << endl;//Cambio a función getBloodType de Donor para mostrar el tipo de sangre en formato legible
             cout << "Número de móvil: " << d.number << endl;
             cout << endl;
             cout << "¿Está seguro de que desea eliminar al donante? [s/n]: ";
@@ -260,3 +264,5 @@ void BloodDatabase::deleteDonor(const string& donorName) {
         cout << "No se encontró ningún donante con el nombre " << donorName << endl;
     }
 }
+
+    
