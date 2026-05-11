@@ -136,7 +136,6 @@ void BloodDatabase::searchAndDisplay() const {
     string addressFilter;
     getline(cin, addressFilter);
 
-    displayBloodTypes();
     bool choose;
     cerr << "Desea buscar por tipo de sangre? (1=Si, 0=No): ";
     cin >> choose;
@@ -144,7 +143,8 @@ void BloodDatabase::searchAndDisplay() const {
     string bloodTypeFilter;
     int bloodTypeSAD; //blootTypeSAD = BloodType Search And Display. Variable para almacenar el tipo de sangre filtrado como entero
     if (choose==1){
-        int bloodTypeSAD= getValidatedInput("Ingrese el tipo de sangre (dejar en blanco para omitir): ");
+         displayBloodTypes();
+        int bloodTypeSAD= getValidatedInput("Ingrese el tipo de sangre: ");
     }
     else {
         int bloodTypeSAD = 0;

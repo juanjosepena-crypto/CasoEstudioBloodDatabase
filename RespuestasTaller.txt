@@ -1,0 +1,78 @@
+// Curso: Fundamentos de Programación Orientada a Objetos
+// Archivo: RespuestasTaller.txt
+// Autores:
+// - Juan José Peña Garcés | Código: 2538880 | juan.jose.pena@correounivalle.edu.co
+// Fecha: 10/05/2026
+
+1. Modularidad: ¿Cuáles módulos o clases identifica en el caso? ¿Considera
+   que cada clase representa un objeto más pequeño y manejable? --¿En cuál
+   sección del código encuentra que el programa está dividido?
+    R// Identifico claramente a BloodDatabase y a Donor como clases, junto con sus funciones/módulos
+        tales como getValidatedInput(de BloodDatabase) o getDonorDetails(que es de BloodDatabase
+        pero trabaja estrechamente con la clase Donor).
+        Considero que si que se representan los objetos de manera adecuada.
+
+
+2. Evalúe si la siguiente expresión es verdadera o falsa y justifique su respuesta:
+    La modularidad facilita la localización y corrección de errores.
+        R// Verdadero. Si tengo un módulo sacando valores raros simplemente tengo que ver la secuencia del programa
+        y ver en qué línea en específico está presentando el error.
+    Si hay un problema en una clase, se puede abordar sin afectar al resto del sistema.
+        R// Depende. Si tengo un programa que contiene Clases que constantemente se llaman entre sí (como es el caso de BloodDatabase-Donor)
+            hay que cerciorarse de que las variables sean las adecuadas.
+            Aunque es verdad que si son Clases "independientes" es claramente Verdadero.
+
+3. Evalúe si la siguiente expresión es verdadera o falsa y justifique su respuesta:
+    Los desarrolladores pueden trabajar en diferentes clases simultáneamente sin conflictos,
+    mejorando la productividad y la eficiencia del equipo de desarrollo.
+        R// Verdadero, siempre y cuando se tenga muy claro las variables que se van a usar
+            y cómo se van a interconectar las clases (si es que en algún punto lo hacen).
+
+4. Reusabilidad: ¿Qué código ha reutilizado hasta el momento?
+    R// He reutilizado la función BloodDatabase.displayProvinces para crear la función BloodDatabase.displayBloodTypes.
+
+5. Evalúe si la siguiente expresión es verdadera o falsa y justifica tu respuesta:
+    Las clases pueden ser reutilizadas en diferentes partes del programa
+    o incluso en otros proyectos, reduciendo el esfuerzo de desarrollo.
+        R// Verdadero. Si en el pasado hice una función que verificaba si tal input es alfanumérico no es sino adecuarlo al programa y testearlo.
+
+6. Evalúe si la siguiente expresión es verdadera o falsa y justifique su respuesta:
+    El ocultamiento de la información permitió resolver los requerimientos del caso.
+        R// Falso. Al menos para los primeros 4 requerimientos el hecho de que los datos sean privados no alteró su modo de operación.
+            Sin embargo, viendo el punto avanzado veo que el que sea privada esa información, aunque no cambiara su modo de operar era necesario,
+            porque en caso contrario habría una fuga de datos.
+
+7. ¿Considera que en el caso hay consistencia, pues la reutilización de código
+   asegura que las funcionalidades compartidas se comporten de manera uniforme en todo el sistema?
+    R// Claro. Aunque sea algo complicado de manejar (hablando netamente de las variables) hay consistencia en el sentido en que
+        su manera de funcionar es determinada, independientemente de donde se llamen.
+
+8. Extensibilidad: ¿Qué nuevas funcionalidades adiciona a la aplicación?
+   ¿Considera que es fácil añadir nuevas funcionalidades y extender las existentes?
+        R// Más que adicionar modificaría la función getValidatedInput, funcion la cual intenté modificar por mi cuenta
+            agregando un verificador de input "variable", de manera que no importa si metía el nombre o el número
+            porque dependiendo del caso (funcionaba con switch) verificaba dependiendo de este: si era nombre, verificaba cada caracter si era
+            alfanumérico; si era número verificaba que fueran exactamente 10 números los que ingresaba; etc.
+            
+            Lo intenté hacer por mi cuenta, pero en el proceso me abrumé de tal manera que simplemente retorné a un commit anterior que hice.
+            Había puesto todos los condicionales para name y number, pero debido a que la misma función estaba diseñada para RETORNAR un valor
+            (y yo quería que fuera "variable") ni con un auto lograba compilar. Me llevó mucho tiempo, pero aprendí bastante sobre esa función en específico. 
+
+9. ¿Considera que el código del caso es claro y organizado? ¿La Mantenibilidad facilita la comprensión y modificación del sistema?
+    R// Extremadamente claro, aunque por mi parte lo documenté un poco más para mayor comprensión de cada cosa.
+        Considero que una cosa no va con la otra, ya que el mantenimiento de un programa (aunque debería) no asegura una mayor comprensión y modificación del sistema.
+
+10. ¿Considera que el código del caso es sencillo de actualizar y mejorar?
+    ¿Esto se logra por la separación de responsabilidades entre las clases?
+        R// Considero que sí, porque es muy entendible a primera vista, pero si es verdad que le falta bastante documentación.
+            Separar las responsabilidades para cada clase es vital para que sea "lógicamente entendible", de manera que sabemos que cada clase hace talCosa, y no otraCosa. 
+
+11. Facilidad de comprensión ¿El código entregado en el caso está escrito de la forma en que nosotros entendemos y modelamos el mundo real?
+    ¿Es intuitivo el uso de objetos y relaciones entre ellos?
+        R// Sin duda tiene una buena abstracción, por lo que considero que sí.
+            Su relacion es claramente estrecha (literal siguen la misma estructura) y su uso es tanto el adecuado como entendible, por lo que considero que sí.
+
+12. Se puede argumentar que:
+    El software proporciona resultados correctos o precisos.
+        R// Me encantaría poder decir que sí, pero falta verificar que los datos que se ingresen sean los adecuados,
+            y solo por eso no puedo decir que los resultados sean los adecuados.
